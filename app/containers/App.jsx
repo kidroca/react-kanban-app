@@ -33,7 +33,10 @@ export default class App extends Component {
     return (
             <div>
                 <button onClick={this.addNote}>+</button>
-                <Notes notes={notes} onDelete={this.onDelete} />
+                <Notes notes={notes}
+                       onNoteClick={this.activateNoteEdit}
+                       onEdit={this.editNote}
+                       onDelete={this.onDelete} />
             </div>
         );
   }
@@ -54,6 +57,34 @@ export default class App extends Component {
     e.stopPropagation();
 
     const notes = this.state.notes.filter(note => note.id !== id);
+    this.setState({ notes });
+  };
+
+  activateNoteEdit = (id) => {
+
+    const notes = this.state.notes.map((note) => {
+      if (note.id === id) {
+        note.editing = true;
+      }
+
+      return note;
+    });
+
+    this.setState({ notes });
+  };
+
+  editNote = (id, task) => {
+
+    const notes = this.state.notes.map(note => {
+
+      if (note.id === id) {
+        note.editing = false;
+        note.task = task;
+      }
+
+      return note;
+    });
+
     this.setState({ notes });
   }
 }
