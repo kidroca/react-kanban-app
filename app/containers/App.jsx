@@ -33,7 +33,7 @@ export default class App extends Component {
     return (
             <div>
                 <button onClick={this.addNote}>+</button>
-                <Notes notes={notes} />
+                <Notes notes={notes} onDelete={this.onDelete} />
             </div>
         );
   }
@@ -47,5 +47,13 @@ export default class App extends Component {
     };
 
     this.setState({notes: [...notes, newNote]})
+  };
+
+  onDelete = (id, e) => {
+
+    e.stopPropagation();
+
+    const notes = this.state.notes.filter(note => note.id !== id);
+    this.setState({ notes });
   }
 }
