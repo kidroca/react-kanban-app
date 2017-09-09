@@ -32,7 +32,7 @@ export default class App extends Component {
 
     return (
             <div>
-                <button onClick={this.addNote}>+</button>
+                <button onClick={this.addNote} className="add-note">+</button>
                 <Notes notes={notes}
                        onNoteClick={this.activateNoteEdit}
                        onEdit={this.editNote}
