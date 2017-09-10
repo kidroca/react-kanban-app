@@ -3,7 +3,7 @@ import React from 'react';
 import Note from './Note';
 import Editable from './Editable';
 
-export default ({
+const Notes = ({
   notes,
   onNoteClick = () => {},
   onEdit = () => {},
@@ -22,5 +22,6 @@ export default ({
   ));
 
   return <ul className="notes">{noteItems}</ul>;
-}
+};
 
+export default Notes;

@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import classnames from 'classnames';
 
-export default ({editing, value, onEdit, className, ...props}) => {
+const Editable = ({editing, value, onEdit, className, ...props}) => {
 
   if (editing) {
     return <Edit className={className} value={value} onEdit={onEdit} {...props} />;
   }
 
   return <span className={classnames('value', className)} {...props}>{value}</span>;
-}
+};
 
 class Edit extends Component {
 
@@ -38,3 +38,5 @@ class Edit extends Component {
     this.props.onEdit(value);
   }
 }
+
+export default Editable;
