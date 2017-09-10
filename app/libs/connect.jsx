@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 
-export default (state, action) => {
+export default (state, actions) => {
 
   if (typeof state === 'function' ||
     (typeof state === 'object' && Object.keys(state).length)) {
 
-    return target => connect(state, action, target);
+    return target => connect(state, actions, target);
   }
 
   return target => props => (
-    <target {...Object.assign({}, props, action)} />
+    <target {...Object.assign({}, props, actions)} />
   )
 }
 
