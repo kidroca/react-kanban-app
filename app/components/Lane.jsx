@@ -1,5 +1,5 @@
 import React from 'react';
-import uuid from 'uuid';
+import LaneHeader from './LaneHeader';
 import Notes from './Notes';
 
 import connect from '../libs/connect';
@@ -20,23 +20,6 @@ const Lane = ({ lane, notes, LaneActions, NoteActions, ...props }) => {
     NoteActions.delete(id);
   };
 
-  const addNote = (e) => {
-
-    e.stopPropagation();
-
-    const noteId = uuid.v4();
-
-    NoteActions.create({
-      id: noteId,
-      task: 'New Task'
-    });
-
-    LaneActions.attachToLane({
-      laneId: lane.id,
-      noteId
-    })
-  };
-
   const laneNotes = lane.notes.map((noteId) => {
 
     return notes.find(note => note.id === noteId);
@@ -44,13 +27,8 @@ const Lane = ({ lane, notes, LaneActions, NoteActions, ...props }) => {
 
   return (
     <div {...props}>
-      <div className="lane-header">
-        <div className="lane-add-note">
-          <button onClick={addNote}>+</button>
-        </div>
 
-        <div className="lane-name">{lane.name}</div>
-      </div>
+      <LaneHeader lane={lane} />
 
       <Notes notes={laneNotes}
              onNoteClick={activateNoteEdit}
